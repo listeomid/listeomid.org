@@ -16,6 +16,11 @@ $("#part").change(function(){
 	loadList(province, part, 'm-list');
 })
 
+$("#printBtn").click(function(e){
+	e.preventDefault();
+	window.print();
+})
+
 $("#mBtn").click(function(e){
 	e.preventDefault();
 	activeTab = "m-province";
