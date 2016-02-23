@@ -18,7 +18,7 @@ $("#part").change(function(){
 
 $("#mBtn").click(function(e){
 	e.preventDefault();
-	activeTab = "m-province";	
+	activeTab = "m-province";
 	loadData('m-province');
 	$(this).addClass('active');
 	$("#khBtn").removeClass('active');
@@ -28,8 +28,8 @@ $("#mBtn").click(function(e){
 
 $("#khBtn").click(function(e){
 	e.preventDefault();
-	activeTab = "kh-province";	
-	loadData('kh-province');	
+	activeTab = "kh-province";
+	loadData('kh-province');
 	$(this).addClass('active');
 	$("#mBtn").removeClass('active');
 	$(".part-section").hide();
@@ -51,7 +51,7 @@ function loadData(fileName){
 		}
 	  $("#province option:contains('"+province+"')").prop('selected',true);
 	  loadProvince(province, fileName);
-	});	
+	});
 }
 
 function loadProvince(province, fileName){
@@ -63,17 +63,17 @@ function loadProvince(province, fileName){
 		  }).appendTo( "#part" );
 	  });
 	  if (fileName=="m-province"){
-	  	
+
 	  	var part = readCookie("part");
 	  	if(data[province].indexOf(part)==-1){
 	  		part = data[province][0];
-		}	  	
+		}
 	  	$("#part option:contains('"+part+"')").prop('selected',true);
 	  	loadList(province, part, 'm-list');
 		}else{
 			loadList(province, '', 'kh-list');
 		}
-	});	
+	});
 }
 
 
@@ -82,34 +82,34 @@ function loadList(province, part, fileName){
 	if (part){
 		createCookie("part", part, 1000);
 	}
-	
+
 
 	$("#list").html("");
-	
+
 	$.getJSON( "./data/" + fileName + ".json", function( data ) {
-	  
+
 	  $.each( data, function( key, val ) {
 
 	  	if ((val['part']==part || fileName=="kh-list") && val['province']==province){
 	  		var items = '';
-	  		
+
 	  		if(val['fname'] && val['lname']){
 		  		if(val['code']){
 		  			items+= "<p class='code'>" + val['code'] + "</p>";
 		  		}
 		  		items+='<p class="fname">'
-		  		
+
 		  		if(val['prefix']){
 		  			items+= val['prefix'] + " ";
 		  		}
-		  		
+
 		  		items+= val['fname'] + " ";
 		  		items+= val['lname'];
-		  		
+
 		  		items+="</p>";
 	  		}else{
 	  			if ($("#list").text().length==0){
-					items = '<p>سکوت</p>';
+					items = '<p>موردی یافت نشد</p>';
 				}
 	  		}
 
@@ -120,7 +120,7 @@ function loadList(province, part, fileName){
 			  }).appendTo( "#list" );
 		}
 	  });
-	});	
+	});
 }
 
 function createCookie(name,value,hours) {
