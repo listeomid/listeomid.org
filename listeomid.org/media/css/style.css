@@ -45,7 +45,8 @@ a{text-decoration: none;color: #133179}
 .candidate:hover{background: #eee;}
 .candidate p{display: inline;padding: 0;margin-right: 4px;}
 .candidate .code:after{content: "-";margin: 0 3px}
-.footer{background: #3cb8c2;height: 100px;margin-top: 50px;z-index: -1}
+.footer{background: #3cb8c2;min-height: 100px;margin-top: 50px;z-index: -1}
 .footer a{color: #fff}
 .footer a:hover{color: #133179; text-decoration: underline;}
 .footer .inside{padding: 30px;}
+.footer2 {font-size: 10pt;text-align: center;}
