@@ -23,6 +23,7 @@ $("#printBtn").click(function(e){
 
 $("#mBtn").click(function(e){
 	e.preventDefault();
+	$(".activeText").html($(this).text());
 	activeTab = "m-province";
 	loadData('m-province');
 	$(this).addClass('active');
@@ -33,6 +34,7 @@ $("#mBtn").click(function(e){
 
 $("#khBtn").click(function(e){
 	e.preventDefault();
+	$(".activeText").html($(this).text());
 	activeTab = "kh-province";
 	loadData('kh-province');
 	$(this).addClass('active');
