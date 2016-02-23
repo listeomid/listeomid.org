@@ -36,7 +36,7 @@ a{text-decoration: none;color: #133179}
 .nav ul{list-style: none;padding: 0;margin:0;width: 404px;display: inline-block;}
 .nav li{display: inline-block;width: 201px;min-height: 50px;float: right;}
 .select{background: #e6e6e6;min-height: 100px}
-.select label{font-size: 25px;font-weight: normal;padding-right:20px;padding-top: 10px;}
+.select label{font-size: 25px;font-weight: normal;padding-top: 10px;}
 .select select{font-size: 20px;margin-top: 5px; padding: 10px 0; height: 50px;}
 .inside{padding: 25px;}
 #list{min-height: 94px}
@@ -50,3 +50,4 @@ a{text-decoration: none;color: #133179}
 .footer a:hover{color: #133179; text-decoration: underline;}
 .footer .inside{padding: 30px;}
 .footer2 {font-size: 10pt;text-align: center;}
+a#printBtn {margin-top: 7px;}
