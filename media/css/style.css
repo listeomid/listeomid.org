@@ -1,0 +1,51 @@
+@font-face {
+  font-family: Vazir;
+  src: url('../font/Vazir-persian-digits-overwrite.eot');
+  src: url('../font/Vazir-persian-digits-overwrite.eot?#iefix') format('embedded-opentype'),
+       url('../font/Vazir-persian-digits-overwrite.woff') format('woff'),
+       url('../font/Vazir-persian-digits-overwrite.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('../font/Vazir-Bold-persian-digits-overwrite.eot');
+  src: url('../font/Vazir-Bold-persian-digits-overwrite.eot?#iefix') format('embedded-opentype'),
+       url('../font/Vazir-Bold-persian-digits-overwrite.woff') format('woff'),
+       url('../font/Vazir-Bold-persian-digits-overwrite.ttf') format('truetype');
+  font-weight: bold;
+}
+html,body{ direction: rtl}
+html {position: relative;min-height:100%;}
+body{font:normal 20px 'Vazir', Tahoma; color: #333;background-color: #eee}
+.container{background-color: #fff}
+.columns, .column{min-height: 1px;}
+a{text-decoration: none;color: #133179}
+.payam{font-weight: bold; text-align: center;display: none}
+.header{background: #3cb8c2;height: 324px;text-align: center;position: relative;}
+.header .rouhani{ background: url('../img/rouhani.jpg');height: 100%;margin: 0 !important;padding: 0;background-size: cover;background-position: center;position: absolute;left: 0;top: 0;}
+.header .khatami{background: url('../img/khatami.jpg');height: 100%;margin: 0 !important;padding: 0;background-size: cover;background-position: center;}
+.logo{text-align: center;margin: 20px auto !important;float: none}
+.logo h2{font-size: 22px; color: #133179}
+.logo img{margin-bottom: 20px;margin: 0 auto}
+
+.nav{background-color: #37a8b1;height: 50px;text-align: center;}
+.nav a{color: #FFF;margin: 0 !important;text-align: center;padding: 10px 0 11px;width: 100%;display: inline-block;}
+.nav a.active{background: #e6e6e6 !important;color:#333 !important}
+.nav a:hover{background: #57d4de;color:#FFF;}
+.nav ul{list-style: none;padding: 0;margin:0;width: 404px;display: inline-block;}
+.nav li{display: inline-block;width: 201px;min-height: 50px;float: right;}
+.select{background: #e6e6e6;min-height: 100px}
+.select label{font-size: 25px;font-weight: normal;padding-right:20px;padding-top: 10px;}
+.select select{font-size: 20px;margin-top: 5px; padding: 10px 0; height: 50px;}
+.inside{padding: 25px;}
+#list{min-height: 94px}
+.list p.khatami{font-weight: bold;}
+.candidate{margin: 20px 0 !important; padding: 0}
+.candidate:hover{background: #eee;}
+.candidate p{display: inline;padding: 0;margin-right: 4px;}
+.candidate .code:after{content: "-";margin: 0 3px}
+.footer{background: #3cb8c2;height: 100px;margin-top: 50px;z-index: -1}
+.footer a{color: #fff}
+.footer a:hover{color: #133179; text-decoration: underline;}
+.footer .inside{padding: 30px;}
