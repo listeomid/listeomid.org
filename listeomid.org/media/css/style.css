@@ -33,8 +33,8 @@ a{text-decoration: none;color: #133179}
 .nav a{color: #FFF;margin: 0 !important;text-align: center;padding: 10px 0 11px;width: 100%;display: inline-block;}
 .nav a.active{background: #e6e6e6 !important;color:#333 !important}
 .nav a:hover{background: #57d4de;color:#FFF;}
-.nav ul{list-style: none;padding: 0;margin:0;width: 404px;display: inline-block;}
-.nav li{display: inline-block;width: 201px;min-height: 50px;float: right;}
+.nav ul{list-style: none;padding: 0;margin:0;width: 100%;max-width: 404px;display: inline-block;}
+.nav li{display: inline-block;max-width: 201px;width: 50%;min-height: 50px;float: right;}
 .select{background: #e6e6e6;min-height: 100px}
 .select label{font-size: 25px;font-weight: normal;}
 .select select{font-size: 20px;margin-top: 5px; padding: 10px 0; height: 50px;}
