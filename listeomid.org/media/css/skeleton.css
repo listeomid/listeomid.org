@@ -1010,6 +1010,9 @@ hr {
   .header .rouhani {display: none}
 }
 
+@media (max-width: 650px) and (min-width: 560px) {
+  .candidate {font-size: 16px}
+}
 
 /* Larger than tablet */
 
