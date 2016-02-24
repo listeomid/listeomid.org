@@ -996,7 +996,8 @@ hr {
   .nav a{padding: 16px 0 13px !important;}
   .select label, .select select{font-size: 20px !important}
   .nav ul{float: left;}
-  .logo img{width: 350px;height: 182px;}
+  .logo img{width: 100% !important;height: 100% !important;}
+  .header {height: inherit !important;}
   
   .header .khatami {display: none}
   .header .rouhani {display: none}
