@@ -978,7 +978,9 @@ hr {
 @media (max-width: 320px) {
   .container{padding: 0 !important}
   body{font-size: 15px !important}
+  .nav{height: inherit !important;}
   .nav a{padding: 16px 0 13px !important;}
+  .nav ul li{margin: 0;}
   .select label, .select select{font-size: 20px !important}
   .nav ul{float: left}
   .logo img{width: 300px !important;height: 156px !important;}
