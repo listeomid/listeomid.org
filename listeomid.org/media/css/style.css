@@ -33,10 +33,10 @@ a{text-decoration: none;color: #133179}
 .nav a{color: #FFF;margin: 0 !important;text-align: center;padding: 10px 0 11px;width: 100%;display: inline-block;}
 .nav a.active{background: #e6e6e6 !important;color:#333 !important}
 .nav a:hover{background: #57d4de;color:#FFF;}
-.nav ul{list-style: none;padding: 0;margin:0;width: 404px;display: inline-block;}
-.nav li{display: inline-block;width: 201px;min-height: 50px;float: right;}
+.nav ul{list-style: none;padding: 0;margin:0;width: 100%;max-width: 404px;display: inline-block;}
+.nav li{display: inline-block;max-width: 201px;width: 50%;min-height: 50px;float: right;}
 .select{background: #e6e6e6;min-height: 100px}
-.select label{font-size: 25px;font-weight: normal;padding-right:20px;padding-top: 10px;}
+.select label{font-size: 25px;font-weight: normal;}
 .select select{font-size: 20px;margin-top: 5px; padding: 10px 0; height: 50px;}
 .inside{padding: 25px;}
 #list{min-height: 94px}
@@ -45,8 +45,9 @@ a{text-decoration: none;color: #133179}
 .candidate:hover{background: #eee;}
 .candidate p{display: inline;padding: 0;margin-right: 4px;}
 .candidate .code:after{content: "-";margin: 0 3px}
-.footer{background: #3cb8c2;min-height: 100px;margin-top: 50px;z-index: -1}
+.footer{background: #3cb8c2;padding: 15px;margin-top: 50px;z-index: -1 }
+.footer .inside{padding: 0;}
+.footer .inside .four.columns{text-align: center;}
 .footer a{color: #fff}
 .footer a:hover{color: #133179; text-decoration: underline;}
-.footer .inside{padding: 30px;}
 .footer2 {font-size: 10pt;text-align: center;}
