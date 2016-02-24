@@ -116,7 +116,7 @@ function loadList(province, part, fileName){
 
 			$( "<div/>", {
 			    html: items,
-			    class: "four columns candidate"
+			    class: "six columns candidate"
 			  }).appendTo( "#list" );
 		}
 	  });

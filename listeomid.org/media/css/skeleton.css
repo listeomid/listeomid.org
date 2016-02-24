@@ -725,7 +725,6 @@ select:focus {
 label,
 legend {
   display: block;
-  margin-bottom: .5rem;
   font-weight: 600;
 }
 
@@ -979,7 +978,9 @@ hr {
 @media (max-width: 320px) {
   .container{padding: 0 !important}
   body{font-size: 15px !important}
+  .nav{height: inherit !important;}
   .nav a{padding: 16px 0 13px !important;}
+  .nav ul li{margin: 0;}
   .select label, .select select{font-size: 20px !important}
   .nav ul{float: left}
   .logo img{width: 300px !important;height: 156px !important;}
@@ -997,20 +998,26 @@ hr {
   .nav a{padding: 16px 0 13px !important;}
   .select label, .select select{font-size: 20px !important}
   .nav ul{float: left;}
-  .logo img{width: 350px;height: 182px;}
+  .logo img{width: 100% !important;height: 100% !important;}
+  .header {height: inherit !important;}
   
   .header .khatami {display: none}
   .header .rouhani {display: none}
+
+  .row{margin: 0;}
 }
 
 /* Larger than phablet (also point when grid becomes active) */
 
-@media (max-width: 550px) {
+@media (max-width: 559px) {
   .logo img{width: 350px;height: 182px;}
   .header .khatami {display: none}
   .header .rouhani {display: none}
 }
 
+@media (max-width: 650px) and (min-width: 560px) {
+  .candidate {font-size: 16px}
+}
 
 /* Larger than tablet */
 
