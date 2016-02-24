@@ -1000,6 +1000,8 @@ hr {
   
   .header .khatami {display: none}
   .header .rouhani {display: none}
+
+  .row{margin: 0;}
 }
 
 /* Larger than phablet (also point when grid becomes active) */
