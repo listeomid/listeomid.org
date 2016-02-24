@@ -1005,7 +1005,7 @@ hr {
 
 /* Larger than phablet (also point when grid becomes active) */
 
-@media (max-width: 550px) {
+@media (max-width: 559px) {
   .logo img{width: 350px;height: 182px;}
   .header .khatami {display: none}
   .header .rouhani {display: none}
