@@ -37,7 +37,7 @@ $("#khBtn").click(function(e){
 });
 
 function loadData(fileName){
-	$.getJSON( "./data/"+fileName+".json", function( data ) {
+	$.getJSON( "./data/"+fileName+".json?v=1", function( data ) {
 	$("#province").html('');
 	  $.each( data, function( key, val ) {
 	  	var item = fileName=="kh-province" ? val : key;
@@ -55,7 +55,7 @@ function loadData(fileName){
 }
 
 function loadProvince(province, fileName){
-	$.getJSON( "./data/" + fileName + ".json", function( data ) {
+	$.getJSON( "./data/" + fileName + ".json?v=1", function( data ) {
 	  $("#part").html("");
 	  $.each( data[province], function( key, val ) {
 		$( "<option/>", {
@@ -86,7 +86,7 @@ function loadList(province, part, fileName){
 
 	$("#list").html("");
 
-	$.getJSON( "./data/" + fileName + ".json", function( data ) {
+	$.getJSON( "./data/" + fileName + ".json?v=1", function( data ) {
 
 	  $.each( data, function( key, val ) {
 
