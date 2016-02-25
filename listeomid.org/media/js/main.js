@@ -1,4 +1,6 @@
 var activeTab = "m-province";
+var milliseconds = (new Date).getTime(); //for removing lists' chache
+var version = 2; //in case province and part changes
 
 $(document).ready(function(){
 	loadData('m-province');
@@ -16,28 +18,35 @@ $("#part").change(function(){
 	loadList(province, part, 'm-list');
 })
 
+$("#printBtn").click(function(e){
+	e.preventDefault();
+	window.print();
+})
+
 $("#mBtn").click(function(e){
 	e.preventDefault();
+	$(".activeText").html($(this).text());
 	activeTab = "m-province";
 	loadData('m-province');
 	$(this).addClass('active');
 	$("#khBtn").removeClass('active');
 	$(".part-section").show();
-	$(".province-parent").removeClass("ten").addClass("three");
+	$(".province-parent").parent().removeClass("eleven").addClass("three");
 });
 
 $("#khBtn").click(function(e){
 	e.preventDefault();
+	$(".activeText").html($(this).text());
 	activeTab = "kh-province";
 	loadData('kh-province');
 	$(this).addClass('active');
 	$("#mBtn").removeClass('active');
 	$(".part-section").hide();
-	$(".province-parent").addClass("ten").removeClass("three");
+	$(".province-parent").parent().addClass("eleven").removeClass("three");
 });
 
 function loadData(fileName){
-	$.getJSON( "./data/"+fileName+".json?v=1", function( data ) {
+	$.getJSON( "./data/" + fileName + ".json?v=" + version, function( data ) {
 	$("#province").html('');
 	  $.each( data, function( key, val ) {
 	  	var item = fileName=="kh-province" ? val : key;
@@ -55,7 +64,7 @@ function loadData(fileName){
 }
 
 function loadProvince(province, fileName){
-	$.getJSON( "./data/" + fileName + ".json?v=1", function( data ) {
+	$.getJSON( "./data/" + fileName + ".json?v=" + version, function( data ) {
 	  $("#part").html("");
 	  $.each( data[province], function( key, val ) {
 		$( "<option/>", {
@@ -86,7 +95,7 @@ function loadList(province, part, fileName){
 
 	$("#list").html("");
 
-	$.getJSON( "./data/" + fileName + ".json?v=1", function( data ) {
+	$.getJSON( "./data/" + fileName + ".json?v=" + milliseconds, function( data ) {
 
 	  $.each( data, function( key, val ) {
 
@@ -127,7 +136,7 @@ function createCookie(name,value,hours) {
     if (hours) {
         var date = new Date();
         date.setTime(date.getTime()+(hours*60*60*1000));
-        var expires = "; expires="+date.toGMTString();
+        var expires = "; expires="+date.toUTCString();
     }
     else var expires = "";
     document.cookie = name+"="+value+expires+"; path=/";

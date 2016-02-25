@@ -26,7 +26,7 @@ a{text-decoration: none;color: #133179}
 .header .rouhani{ background: url('../img/rouhani.jpg');height: 100%;margin: 0 !important;padding: 0;background-size: cover;background-position: center;position: absolute;left: 0;top: 0;}
 .header .khatami{background: url('../img/khatami.jpg');height: 100%;margin: 0 !important;padding: 0;background-size: cover;background-position: center;}
 .logo{text-align: center;margin: 20px auto !important;float: none}
-.logo h2{font-size: 22px; color: #133179}
+.logo h2{font-size: 21px; color: #133179}
 .logo img{margin-bottom: 20px;margin: 0 auto}
 
 .nav{background-color: #37a8b1;height: 50px;text-align: center;}
@@ -51,3 +51,5 @@ a{text-decoration: none;color: #133179}
 .footer a{color: #fff}
 .footer a:hover{color: #133179; text-decoration: underline;}
 .footer2 {font-size: 10pt;text-align: center;}
+a#printBtn {margin-top: 7px;opacity: 0.7}
+a#printBtn:hover{opacity: 1}
