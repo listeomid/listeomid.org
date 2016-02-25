@@ -1013,6 +1013,7 @@ hr {
   .logo img{width: 350px;height: 182px;}
   .header .khatami {display: none}
   .header .rouhani {display: none}
+  #printBtn{display: none;}
 }
 
 @media (max-width: 650px) and (min-width: 560px) {

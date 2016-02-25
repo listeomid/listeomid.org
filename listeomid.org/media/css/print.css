@@ -1,7 +1,8 @@
-.header, .nav, .footer{
-	display:none;
-}
-.payam{display: block !important}
+.header, .nav a, .footer{display:none;}
+.payam, .payam .activeText{display: block !important}
+.payam .activeText{font-size: 30px;}
 select{border:none !important;width: auto !important;display: inline !important;font-size: 20px !important;padding: 0!important;margin: 0 !important}
 .khatami,label{display: none !important}
 .candidate{margin: 0!important;padding: 10px !important}
+#printBtn{display: none !important}
+.footer, .footer2{display: none !important}
