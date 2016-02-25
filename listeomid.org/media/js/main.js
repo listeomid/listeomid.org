@@ -102,7 +102,7 @@ function loadList(province, part, fileName){
 	  	if ((val['part']==part || fileName=="kh-list") && val['province']==province){
 	  		var items = '';
 
-	  		if(val['fname'] && val['lname']){
+	  		if(val['lname']){
 		  		if(val['code']){
 		  			items+= "<p class='code'>" + val['code'] + "</p>";
 		  		}
