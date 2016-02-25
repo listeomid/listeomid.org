@@ -54,10 +54,9 @@ function loadData(fileName){
 		    html: item,
 		  }).appendTo( "#province" );
 	  });
-		var province = readCookie("province");
-		if(province==null){
-			province = "تهران";
-		}
+		
+		province = "تهران";
+		
 	  $("#province option:contains('"+province+"')").prop('selected',true);
 	  loadProvince(province, fileName);
 	});
@@ -73,10 +72,10 @@ function loadProvince(province, fileName){
 	  });
 	  if (fileName=="m-province"){
 
-	  	var part = readCookie("part");
-	  	if(data[province].indexOf(part)==-1){
-	  		part = data[province][0];
-		}
+	  	
+
+	  	part = data[province][0];
+
 	  	$("#part option:contains('"+part+"')").prop('selected',true);
 	  	loadList(province, part, 'm-list');
 		}else{
@@ -87,11 +86,6 @@ function loadProvince(province, fileName){
 
 
 function loadList(province, part, fileName){
-	createCookie("province", province, 1000);
-	if (part){
-		createCookie("part", part, 1000);
-	}
-
 
 	$("#list").html("");
 
@@ -130,25 +124,4 @@ function loadList(province, part, fileName){
 		}
 	  });
 	});
-}
-
-function createCookie(name,value,hours) {
-    if (hours) {
-        var date = new Date();
-        date.setTime(date.getTime()+(hours*60*60*1000));
-        var expires = "; expires="+date.toUTCString();
-    }
-    else var expires = "";
-    document.cookie = name+"="+value+expires+"; path=/";
-}
-
-function readCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
 }
