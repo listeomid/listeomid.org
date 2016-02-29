@@ -217,7 +217,7 @@ function loadList(province, part, fileName){
 		$("#chartThreeTitle").text(title);	
 
 		if (fileName=="kh-list"){
-			title = 'میزان توفیق جریان‌های سیاسی در کل کشور برای مجلس خبرگان پنجم'
+			title = 'میزان توفیق جریان‌های سیاسی در کل کشور برای مجلس خبرگان ششم'
 		}else{
 			title = 'میزان توفیق جریان‌های سیاسی در کل کشور برای مجلس دهم'
 		}
