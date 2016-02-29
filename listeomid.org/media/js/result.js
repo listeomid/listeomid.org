@@ -24,26 +24,35 @@ var chartOptions= {
 
 var chartOneData = [
     {
-        value: 33,
-        realValue: 1,
+        value: 16,
         color:"#b1ff77",
-        highlight: "#d8ffbb",
         label: "لیست امید"
     },
     {
-        value: 33,
-        realValue: 1,
+        value: 16,
         color: "#ffba77",
-        highlight: "#ffdcbb",
         label: "فقط اصولگرا"
     },
     {
-        value: 33,
-        realValue: 1,
-        color: "#eee",
-        highlight: "#f3f3f3",
+        value: 16,
+        color: "#ddd",
         label: "مستقل"
-    },	    
+    },
+	{
+        value: 16,
+        color:"#d8ffbb",
+        label: "لیست امید – مرحله دوم"
+    },        
+    {
+        value: 16,
+        color: "#ffdcbb",
+        label: "فقط اصولگرا _ مرحله دوم"
+    },
+    {
+        value: 16,
+        color: "#f3f3f3",
+        label: "مستقل ـ مرحله دوم"
+    },    	    
 ]
 
 
@@ -54,8 +63,6 @@ var chartTwoData = {
             label: "My First dataset",
             fillColor: "rgba(220,220,220,0.5)",
             strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
-            highlightStroke: "rgba(220,220,220,1)",
             data: [],
             color: []
         },
@@ -178,7 +185,10 @@ function loadList(province, part, fileName){
 	  		if (val.total && (data[key-1]!=undefined && val.part!=data[key-1].part)){
 	  			totalvote += val.total;
 	  		}
-			
+	  		
+			if (fileName=="kh-list" && val.total && (data[key-1]!=undefined && val.province!=data[key-1].province || key==0)){
+	  			totalvote += val.total;
+	  		}
 
 			chartOneCal(val);
 			var tagClassList = {"مشترک":"both","منتخب":"chosen", "بازمانده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
@@ -196,7 +206,7 @@ function loadList(province, part, fileName){
 	  			}	
 	  		}
 	
-			if (val.vote>0 && province!=-1){
+			if (val.vote>0 && province!=-1 && val.lname && !val.lname2){
 				var tag = '';
 				if(val.lname2){
 					tag = 'second-'
@@ -205,7 +215,7 @@ function loadList(province, part, fileName){
 
 					var category = val.category2.replace('فقط','').trim();
 					tagClass = tagClassList[category]!=undefined ? tagClassList[category] : '';
-					chartTwoData.datasets[0].color.push(colors[tag+tagClass]);
+					chartTwoData.datasets[0].color[val.vote2]=colors[tag+tagClass];
 					
 				}
 
@@ -213,7 +223,7 @@ function loadList(province, part, fileName){
 				tagClass = tagClassList[category]!=undefined ? tagClassList[category] : '';
 				chartTwoData.labels.push(val.fname + " " + val.lname);
 				chartTwoData.datasets[0].data.push(val.vote);
-				chartTwoData.datasets[0].color.push(colors[tag+tagClass]);
+				chartTwoData.datasets[0].color[val.vote]=colors[tag+tagClass];
 				
 				++dataList.total;
 			}
@@ -258,14 +268,12 @@ function loadList(province, part, fileName){
 			$(".chartTwo").fadeIn(250);
 			chartOptions.scaleStepWidth= Math.ceil(totalvote/10);
 			var ctx = $("#chartTwo").get(0).getContext("2d");
-			for(n in chartTwoData.datasets[0].bars){
-				chartTwo.datasets[0].bars[n].fillColor = chartTwoData.datasets[0].color[n];
-			}			
 			chartTwo = new Chart(ctx).Bar(chartTwoData, chartOptions);
+			MyBarChartMethods.sort(chartTwo,0)
 			for(n in chartTwo.datasets[0].bars){
-				chartTwo.datasets[0].bars[n].fillColor = chartTwoData.datasets[0].color[n];
+				chartTwo.datasets[0].bars[n].fillColor = chartTwoData.datasets[0].color[chartTwo.datasets[0].bars[n].value];
 			}
-			MyBarChartMethods.sort(chartTwo, 0);
+			
 		}else{
 			$(".chartTwo").fadeOut(250);
 		}
@@ -349,10 +357,10 @@ function chartOneCal(data){
 	}
 
 	if (data.category2){
-		chartOne.segments[dataList[categoryItem]].value+=0.5;
+		chartOne.segments[dataList[categoryItem]+3].value+=0.5;
 		data.category2 = data.category2.replace('فقط','').trim();	
 		categoryItem = categoryList[data.category2]!=undefined ? categoryList[data.category2] : '' ;		
-		chartOne.segments[dataList[categoryItem]].value+=0.5;
+		chartOne.segments[dataList[categoryItem]+3].value+=0.5;
 	}
 
 }
