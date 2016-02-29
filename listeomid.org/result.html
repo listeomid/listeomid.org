@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>لیست امید | فهرست نامزدهای ائتلاف فراگیر اصلاح‌طلبان در انتخابات ۹۴</title>
+	<link rel="stylesheet" href="/media/css/normalize.css">
+	<link rel="stylesheet" href="/media/css/skeleton.css?v=2">
+	<link rel="stylesheet" href="/media/css/style.css?v=2">
+	<link rel="stylesheet" media="print" href="/media/css/print.css?v=2">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<meta name="keywords" content="لیست امید, list e omid, اصلاح طلبان, انتخابات, ائتلاف فراگیر, لیست نامزدهای انتخابات, مجلس شورای اسلامی, خبرگان">
+	<meta name="description" content="نام و کد نامزدهای «لیست امید» (مورد حمایت محمد خاتمی) در هر حوزه‌ی انتخابیه، دقیقا منطبق بر اطلاعات سایت «گام دوم» (و مصوبات نهایی شورای سیاستگذاری ائتلاف فراگیر اصلاح‌طلبان). لطفا برای دسترسی آسان‌تر به «لیست امید» آدرس این سایت را از طریق شبکه‌های اجتماعی و پیام‌رسان‌های موبایلی در اختیار دیگر هموطنانمان قرار دهید.">
+	<meta property="og:site_name" content="لیست امید">
+	<meta property="og:title" content="فهرست نامزدهای ائتلاف فراگیر اصلاح‌طلبان در انتخابات ۹۴">
+	<meta property="og:description" content="">
+	<meta property="og:url" content="https://www.listeomid.org/">
+	<meta property="og:image" content="https://www.listeomid.org/media/img/share.jpg">
+</head>
+<body>
+	<div class="container result">
+		<div class="row header">
+			<div class="twelve columns logo">
+				<a href="/">
+					<img src="/media/img/logo.png" width="130" alt="لیست امید" title="لیست امید">
+				</a>
+				<h2>نتایج انتخابات ۹۴</h2>
+			</div>
+		</div>
+		<div class="row nav">
+			<ul>
+				<li><a id="mBtn" class="active" href="#">نتایج مجلس شورای اسلامی</a></li>
+				<li><a id="khBtn" href="#">نتایج مجلس خبرگان رهبری</a></li>
+			</ul>
+		</div>
+		<p class="payam">
+			«لیست امید»
+			<br>
+			نتایج انتخابات ۹۴
+			<br><br>
+			<span class="activeText">
+			مجلس شورای اسلامی
+			</span>
+		</p>			
+		<div class="row select">
+			<div class="inside">
+				<div class="five columns">
+					<label for="province">استان</label>
+					<div class="province-parent">
+						<select id="province" class="province u-full-width">
+						</select>
+					</div>
+				</div>
+				<div class="six columns part-section">
+					<label for="part">حوزه</label>
+					<div class="part-section">
+						<select id="part" class="part u-full-width">
+						</select>
+					</div>
+				</div>
+				<div class="one column">
+					<label>&nbsp;</label>
+					<a href="#" id="printBtn" class="u-pull-left">
+						<img src="/media/img/printer.png" width="48">
+					</a>					
+				</div>
+			</div>
+		</div>
+		<div class="row chart">
+			<div class="inside">
+				<div class="chartOne four columns u-pull-right">
+					<canvas id="chartOne" width="200" height="200"></canvas>
+					<div class="legend"></div>
+				</div>
+				<table id="status" class="u-full-width compact u-pull-left six columns">
+					<tbody class="u-pull-left">
+						<tr>
+							<td class="t-name">
+							کل آرای مأخوذه</td>
+							<td class="t-number totalvote"></td>
+						</tr>					
+						<tr>
+							<td class="t-name">
+							تعداد کرسی‌های این حوزه</td>
+							<td class="t-number totalseat"></td>
+						</tr>
+						<tr>
+							<td class="t-name">
+							کرسی‌های کسب شده از لیست امید</td>
+							<td class="t-number omid"></td>
+						</tr>
+						<tr>
+							<td class="t-name">
+							کرسی‌های کسب شده از لیست اصولگرایان</td>
+							<td class="t-number osul"></td>
+						</tr>
+						<tr>
+							<td class="t-name">
+							کرسی‌های کسب شده مشترک</td>
+							<td class="t-number both"></td>
+						</tr>												
+						<tr>
+							<td class="t-name">
+							کرسی‌های کسب شده مستقل</td>
+							<td class="t-number free"></td>
+						</tr>						
+						<tr>
+							<td class="t-name">
+							واگذاری به مرحله دوم</td>
+							<td class="t-number second"></td>
+						</tr>
+					</tbody>
+				</table>				
+			</div>
+		</div>			
+		<div class="row list">
+			<div class="inside">
+				<table id="total" class="u-full-width table colored">
+					<caption>راه‌یافتگان</caption>
+					<thead>
+						<tr>
+							<th class="t-row">ردیف</th>
+							<th class="t-name">نام و نام خانوادگی</th>
+							<th class="t-number">تعداد آرا</th>
+							<th class="t-number">درصد آرا</th>
+							<th class="t-text">گرایش</th>
+							<th class="t-row"></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<table id="second" class="u-full-width table colored">
+					<caption>مرحله دوم</caption>
+					<thead>
+						<tr>
+							<th class="t-row">ردیف</th>
+							<th class="t-name">نام و نام خانوادگی</th>
+							<th class="t-number">تعداد آرا</th>
+							<th class="t-number">درصد آرا</th>
+							<th class="t-text">گرایش</th>
+							<th class="t-row"></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<table id="omid" class="u-full-width table colored">
+					<caption>وضعیت لیست امید</caption>
+					<thead>
+						<tr>
+							<th class="t-row">ردیف</th>
+							<th class="t-name">نام و نام خانوادگی</th>
+							<th class="t-number">تعداد آرا</th>
+							<th class="t-number">درصد آرا</th>
+							<th class="t-text">وضعیت</th>
+							<th class="t-row"></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<table id="osul" class="u-full-width table colored">
+					<caption>وضعیت اصولگرایان</caption>
+					<thead>
+						<tr>
+							<th class="t-row">ردیف</th>
+							<th class="t-name">نام و نام خانوادگی</th>
+							<th class="t-number">تعداد آرا</th>
+							<th class="t-number">درصد آرا</th>
+							<th class="t-text">وضعیت</th>
+							<th class="t-row"></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>														
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="row footer">
+			<div class="inside">
+				<div class="four columns">
+					<a href="/media/img/tehran-gaamedovom.jpg">
+						تصویر لیست امید تهران
+					</a>
+				</div>
+				<div class="four columns">
+					<a href="http://www.aparat.com/v/7wuxs">
+						پیام ویدئویی سید محمد خاتمی
+					</a>
+				</div>
+
+				<div class="four columns">
+					<a target="_blank" href="https://telegram.me/etelafbot">
+					ربات تلگرام لیست امید
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="row footer2">
+			<div class="inside">
+				<div class="row">
+					نام و کد نامزدهای «لیست امید» (مورد حمایت محمد خاتمی) در هر حوزه‌ی انتخابیه در این سایت دقیقا منطبق بر اطلاعات سایت «گام دوم» (و مصوبات نهایی شورای سیاستگذاری ائتلاف فراگیر اصلاح‌طلبان) است. لطفا برای دسترسی آسان‌تر به «لیست امید» آدرس این سایت را از طریق شبکه‌های اجتماعی و پیام‌رسان‌های موبایلی در اختیار دیگر هموطنانمان قرار دهید.
+					<br>
+					بقیه نامزدها و لیست‌ها مورد حمایت این ائتلاف نیستند.
+				</div>
+
+				<div class="row">
+					<br>
+					<a target="_blank" href="https://github.com/listeomid/listeomid.org">
+					<img src="/media/img/GitHub-Mark-32px.png" alt="مخزن گیت" width="16px" style="padding-top:10px;">
+					<p style="margin-bottom:0px">مخزن گیت</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/media/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/media/js/numeral.min.js"></script>
+	<script type="text/javascript" src="/media/js/chart.min.js"></script>	
+	<script type="text/javascript" src="/media/js/result.js"></script>
+</body>
+</html>

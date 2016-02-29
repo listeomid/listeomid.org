@@ -53,3 +53,29 @@ a{text-decoration: none;color: #133179}
 .footer2 {font-size: 10pt;text-align: center;}
 a#printBtn {margin-top: 7px;opacity: 0.7}
 a#printBtn:hover{opacity: 1}
+
+
+.result .header{height: 160px;}
+.result .logo h2{margin-top: 5px}
+.result .nav a{font-size: 16px; padding-bottom: 16px}
+.result .second .fname{color: #aaa;}
+.result .t-row{width: 10%}
+.result .t-name{width: 40%}
+.result .t-number{width: 20%;}
+.result .t-text{width: 30%}
+.result .table{display: none; font-size: 16px}
+.result table caption {font-weight: bold; font-size: 18px; margin: 10px 0 20px}
+.result table.colored td {border-color: #fff}
+.result #omid.colored tr.chosen, .result .colored tr.omid{background-color: #b1ff77} /*green*/
+.result #omid.colored tr.second, .result #second.colored tr.omid{background-color: #d8ffbb} /*light green*/
+.result #osul.colored tr.chosen, .result .colored tr.osul{background-color: #fdff77} /*yellow*/
+.result #osul.colored tr.second, .result #second.colored tr.osul{background-color: #feffbb} /*light yellow*/
+.result .colored tr.both{background-color: #95bdff} /*blue  light blue :cadeff*/
+.result #status{font-size: 14px;}
+.result #status .t-name{width: 50%}
+.result #status .t-number{text-align: left;width: 50%}
+.chartOne{position: relative;}
+.pie-legend {list-style: none;position: absolute;left: 0;top: 50px;}
+.pie-legend li {display: block;padding-right: 30px;position: relative;margin-bottom: 4px;border-radius: 5px;padding: 2px 30px 2px 8px;font-size: 14px;cursor: default;-webkit-transition: background-color 200ms ease-in-out;-moz-transition: background-color 200ms ease-in-out;-o-transition: background-color 200ms ease-in-out;transition: background-color 200ms ease-in-out;}
+.pie-legend li:hover {background-color: #fafafa;}
+.pie-legend li span {display: block;position: absolute;right: 0;top: 0;width: 20px;height: 100%;border-radius: 5px;}
