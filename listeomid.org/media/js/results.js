@@ -42,7 +42,7 @@ var chartOneData = function (){return [
     {
         value: 14.28,
         color: colors.osul,
-        label: "فقط اصولگرا"
+        label: "اصولگرا"
     },
     {
         value: 14.28,
