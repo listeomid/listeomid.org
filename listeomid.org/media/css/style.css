@@ -56,6 +56,8 @@ a#printBtn:hover{opacity: 1}
 
 
 .result .header{height: 160px;}
+.result .list{margin: 0}
+.result .chart{margin-top: 30px; padding: 30px 50px}
 .result .logo h2{margin-top: 5px}
 .result .nav a{font-size: 16px; padding-bottom: 16px}
 .result .second .fname{color: #aaa;}
@@ -68,14 +70,19 @@ a#printBtn:hover{opacity: 1}
 .result table.colored td {border-color: #fff}
 .result #omid.colored tr.chosen, .result .colored tr.omid{background-color: #b1ff77} /*green*/
 .result #omid.colored tr.second, .result #second.colored tr.omid{background-color: #d8ffbb} /*light green*/
-.result #osul.colored tr.chosen, .result .colored tr.osul{background-color: #fdff77} /*yellow*/
-.result #osul.colored tr.second, .result #second.colored tr.osul{background-color: #feffbb} /*light yellow*/
-.result .colored tr.both{background-color: #95bdff} /*blue  light blue :cadeff*/
+.result #osul.colored tr.chosen, .result .colored tr.osul{background-color: #ffba77} /*orange*/
+.result #osul.colored tr.second, .result #second.colored tr.osul{background-color: #ffdcbb} /*light orange*/
+.result .colored tr.both{background-color: #9ffcf2} /*blue  light blue :cadeff*/
+.result .colored tr.free{background-color: #eee}
+.result #second.colored tr.free{background-color: #f3f3f3}
 .result #status{font-size: 14px;}
 .result #status .t-name{width: 50%}
 .result #status .t-number{text-align: left;width: 50%}
 .chartOne{position: relative;}
-.pie-legend {list-style: none;position: absolute;left: 0;top: 50px;}
+.pie-legend {list-style: none;position: absolute;left: 20%;top: 50px;}
 .pie-legend li {display: block;padding-right: 30px;position: relative;margin-bottom: 4px;border-radius: 5px;padding: 2px 30px 2px 8px;font-size: 14px;cursor: default;-webkit-transition: background-color 200ms ease-in-out;-moz-transition: background-color 200ms ease-in-out;-o-transition: background-color 200ms ease-in-out;transition: background-color 200ms ease-in-out;}
 .pie-legend li:hover {background-color: #fafafa;}
 .pie-legend li span {display: block;position: absolute;right: 0;top: 0;width: 20px;height: 100%;border-radius: 5px;}
+#chartTwo{width: 100%;height: 400px}
+.chartTwo{display: none;}
+.hidden{display: none !important;}
