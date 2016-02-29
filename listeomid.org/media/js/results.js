@@ -57,7 +57,7 @@ var chartOneData = function (){return [
     {
         value: 14.28,
         color: colors['second-osul'],
-        label: "فقط اصولگرا ـ مرحله دوم"
+        label: "اصولگرا ـ مرحله دوم"
     },
    	    
 ]}
