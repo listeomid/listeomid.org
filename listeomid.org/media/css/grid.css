@@ -804,6 +804,7 @@ td {
   padding: 12px 15px;
   text-align: right;
   border-bottom: 1px solid #E1E1E1;
+  font-weight: normal;
 }
 table.compact td{
   padding: 5px 10px;
@@ -987,6 +988,7 @@ hr {
   .select label, .select select{font-size: 20px !important}
   .nav ul{float: left}
   .logo img{width: 300px !important;height: 156px !important;}
+  .result .logo img{width: 150px !important;height: 78px !important;}
   .logo h2 {font-size: 18px !important;}
   .header .khatami {display: none}
   .header .rouhani {display: none}
@@ -1002,24 +1004,30 @@ hr {
   .select label, .select select{font-size: 20px !important}
   .nav ul{float: left;}
   .logo img{width: 100% !important;height: 100% !important;}
+  .logo .result img{width: 150px !important;height: 78px !important;}
   .header {height: inherit !important;}
   
   .header .khatami {display: none}
   .header .rouhani {display: none}
 
   .row{margin: 0;}
+  .result .table td, .result .table th{font-size: 11px;}
+  .result .pie-legend {position: relative;right: 0;left: 10%}
 }
 
 /* Larger than phablet (also point when grid becomes active) */
 
 @media (max-width: 559px) {
+  .result .pie-legend {position: relative;right: 0;left: 10%}
   .logo img{width: 350px;height: 182px;}
+  .result .logo img{width: 150px !important;height: 78px !important;}
   .header .khatami {display: none}
   .header .rouhani {display: none}
   #printBtn{display: none;}
 }
 
 @media (max-width: 650px) and (min-width: 560px) {
+  .result .pie-legend {position: relative;right: 0;left: 10%}
   .candidate {font-size: 16px}
 }
 
@@ -1028,9 +1036,12 @@ hr {
 @media (max-width: 750px) {
   
 .logo img{width: 350px;height: 182px;}  
+.result .logo img{width: 150px !important;height: 78px !important;}
 }
 
-
+@media (max-width: 850px) {
+.result .pie-legend {position: relative;right: 0;left: 10%}
+}
 /* Larger than desktop */
 
 @media (min-width: 1000px) {

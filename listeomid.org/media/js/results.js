@@ -1,10 +1,10 @@
 var activeTab = "m-province";
 var milliseconds = (new Date).getTime(); //for removing lists' chache
 var version = 2; //in case province and part changes
-var chartOne, chartTwo;
-var colors = {"omid":"#b1ff77","osul":"#ffba77","both":"#9ffcf2","free":"#eee","second-omid":"#d8ffbb", "second-osul":"#ffdcbb", "second-free":"#f3f3f3"}
+var chartOne, chartTwo, chartThree;
+var colors = {"omid":"#3cb8c2","osul":"#ebdd68","both":"#74b1eb","free":"#ada8f6","second-omid":"#9ddbe0", "second-osul":"#f5eeb3", "second-free":"#d6d3fa"}
 
-var chartOptions= {
+var chartOptions= function(){return {
     segmentShowStroke : true,
     segmentStrokeColor : "#fff",
     segmentStrokeWidth : 1,
@@ -12,6 +12,7 @@ var chartOptions= {
     tooltipTitleFontFamily: "Vazir, Tahoma",
     scaleFontFamily: "Vazir, Tahoma",
     scaleFontSize: 14,
+    showTooltips: true,
     tooltipTemplate: " <%=label%>: <%= numeral(circumference / 6.283).format('(0[.][00]%)') %>" ,
     percentageInnerCutout : 50, 
     animate : false,
@@ -20,49 +21,72 @@ var chartOptions= {
 	scaleStartValue: 0, 
 	scaleStepWidth: "", 
     legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-}
+}}
 
-var chartOneData = [
+var chartOneData = function (){return [
     {
-        value: 16,
-        color:"#b1ff77",
+        value: 14.28,
+        color: colors.free,
+        label: "مستقل"
+    },
+    {
+        value: 14.28,
+        color: colors.omid,
         label: "لیست امید"
     },
     {
-        value: 16,
-        color: "#ffba77",
+        value: 14.28,
+        color: colors.both,
+        label: "مشترک"
+    },      
+    {
+        value: 14.28,
+        color: colors.osul,
         label: "فقط اصولگرا"
     },
     {
-        value: 16,
-        color: "#ddd",
-        label: "مستقل"
-    },
+        value: 14.28,
+        color: colors['second-free'],
+        label: "مستقل ـ مرحله دوم"
+    }, 
 	{
-        value: 16,
-        color:"#d8ffbb",
-        label: "لیست امید – مرحله دوم"
+        value: 14.28,
+        color: colors['second-omid'],
+        label: "لیست امید ـ مرحله دوم"
     },        
     {
-        value: 16,
-        color: "#ffdcbb",
-        label: "فقط اصولگرا _ مرحله دوم"
+        value: 14.28,
+        color: colors['second-osul'],
+        label: "فقط اصولگرا ـ مرحله دوم"
+    },
+   	    
+]}
+
+var chartThreeData = function (){return [
+    {
+        value: 33,
+        color: colors.omid,
+        label: "منتخب"
     },
     {
-        value: 16,
-        color: "#f3f3f3",
-        label: "مستقل ـ مرحله دوم"
-    },    	    
-]
+        value: 33,
+        color: colors['second-omid'],
+        label: "مرحله دوم"
+    },
+    {
+        value: 33,
+        color: '#eee',
+        label: "بازنده"
+    }
+   	    
+]}
 
 
 var chartTwoData = {
     labels: [],
     datasets: [
         {
-            label: "My First dataset",
             fillColor: "rgba(220,220,220,0.5)",
-            strokeColor: "rgba(220,220,220,0.8)",
             data: [],
             color: []
         },
@@ -71,11 +95,6 @@ var chartTwoData = {
 
 $(document).ready(function(){
 	loadData('m-province');
-	var ctx = $("#chartOne").get(0).getContext("2d");
-	chartOne = new Chart(ctx).Pie(chartOneData, chartOptions);					
-	$(".chartOne .legend").html(chartOne.generateLegend());
-	delete chartOptions.tooltipTemplate;
-
 });
 
 
@@ -98,23 +117,25 @@ $("#printBtn").click(function(e){
 $("#mBtn").click(function(e){
 	e.preventDefault();
 	$(".activeText").html($(this).text());
+	$(".m-second").fadeIn(250);
 	activeTab = "m-province";
 	loadData('m-province');
 	$(this).addClass('active');
 	$("#khBtn").removeClass('active');
 	$(".part-section").show();
-	$(".province-parent").parent().removeClass("eleven").addClass("three");
+	$(".province-parent").parent().removeClass("twelve").addClass("three");
 });
 
 $("#khBtn").click(function(e){
 	e.preventDefault();
 	$(".activeText").html($(this).text());
+	$(".m-second").fadeOut(250);
 	activeTab = "kh-province";
 	loadData('kh-province');
 	$(this).addClass('active');
 	$("#mBtn").removeClass('active');
 	$(".part-section").hide();
-	$(".province-parent").parent().addClass("eleven").removeClass("three");
+	$(".province-parent").parent().addClass("twelve").removeClass("three");
 });
 
 function loadData(fileName){
@@ -170,14 +191,54 @@ function loadList(province, part, fileName){
 	chartTwoData.datasets[0].data = [];
 	chartTwoData.datasets[0].color = [];
 	$(".result .table tbody").html("");
+
+	if(province!=-1){
+		$(".list").show();
+		$(".statusOmid").addClass('ahidden')
+	}else{
+		$(".list").hide();
+		$(".statusOmid").removeClass('ahidden')
+	}
+
 	
+	if (chartOne!=undefined){
+		chartOne.destroy();
+	}
+
+	if (chartThree!=undefined){
+		chartThree.destroy();
+	}	
+
+	var xtemp = chartOneData();
+	if(fileName=="kh-list"){
+		xtemp.length = 4;
+		xtemp[0].value = 25;
+		xtemp[1].value = 25;
+		xtemp[2].value = 25;
+		xtemp[3].value = 25;
+		
+	}
+	
+	var ctx = $("#chartOne").get(0).getContext("2d");
+	chartOne = new Chart(ctx).Pie(xtemp, chartOptions());					
+	$(".chartOne .legend").html(chartOne.generateLegend());
+
 	for(k in chartOne.segments){
 		chartOne.segments[k].value = null;
 	}
 
+	var xtemp2 = chartThreeData();	
+	var ctx = $("#chartThree").get(0).getContext("2d");
+	chartThree = new Chart(ctx).Pie(xtemp2, chartOptions());					
+	$(".chartThree .legend").html(chartThree.generateLegend());
+
+	for(k in chartThree.segments){
+		chartThree.segments[k].value = null;
+	}
+	
 	$.getJSON( "./data/result-" + fileName + ".json?v=" + milliseconds, function( data ) {
 		var totalseat = 0, totalvote = 0;
-		var dataList = {"omid":0, "osul":0, "free":0, "both":0, "second":0, "total":0}
+		var dataList = {"omid":0, "osul":0, "free":0, "both":0, "second":0, "total":0,"omid_chosen":0,"omid_notchosen":0,"omid_second":0}
 	  $.each( data, function( key, val ) {
 
 	  	if (((val.part==part || fileName=="kh-list") && val.province==province) || province==-1){
@@ -191,7 +252,11 @@ function loadList(province, part, fileName){
 	  		}
 
 			chartOneCal(val);
-			var tagClassList = {"مشترک":"both","منتخب":"chosen", "بازمانده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
+			if (province==-1){
+				chartThreeCal(val);
+			}
+
+			var tagClassList = {"مشترک":"both","منتخب":"chosen", "بازنده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
 
 			if(val.lname2){
 				++dataList.second;
@@ -228,9 +293,14 @@ function loadList(province, part, fileName){
 				++dataList.total;
 			}
 
-	  		// if(val.l_omid){
-	  		// 	addItem("#omid", val.f_omid, val.l_omid, val.vote_omid, val.total, val.res_omid, province);
-	  		// }
+
+
+	  		 if(val.res_omid){
+	  		 	//addItem("#omid", val.f_omid, val.l_omid, val.vote_omid, val.total, val.res_omid, province);
+				var res_omid = val.res_omid.trim();
+				tagClass = tagClassList[res_omid]!=undefined ? tagClassList[res_omid] : '';
+	  		 	++dataList['omid_'+tagClass];
+	  		 }
 	  		// if(val.l_osul){
 	  		// 	addItem("#osul", val.f_osul, val.l_osul, val.vote_osul, val.total, val.res_osul, province);
 	  		// }
@@ -245,8 +315,14 @@ function loadList(province, part, fileName){
 		$("#status .second").text(dataList.second);
 		$("#status .omid").text(dataList.omid+dataList.both);
 		$("#status .osul").text(dataList.osul+dataList.both);
+		$("#status .both").text(dataList.both);
 		$("#status .free").text(dataList.free);
 		
+		$("#statusOmid .chosen").text(dataList.omid_chosen);
+		$("#statusOmid .second").text(dataList.omid_second);
+		$("#statusOmid .notchosen").text(dataList.omid_notchosen);
+
+
 		$('.result .table tbody').each(function(){
 			var n = 1;
 			$(this).find('tr').each(function(){
@@ -266,9 +342,12 @@ function loadList(province, part, fileName){
 		
 		if (totalvote && dataList.total>0 && province!=-1){
 			$(".chartTwo").fadeIn(250);
-			chartOptions.scaleStepWidth= Math.ceil(totalvote/10);
+			var cOptions = chartOptions() ;
+			delete cOptions.tooltipTemplate ;						
+			cOptions.scaleStepWidth= Math.ceil(totalvote/10);
+			cOptions.showTooltips= false;
 			var ctx = $("#chartTwo").get(0).getContext("2d");
-			chartTwo = new Chart(ctx).Bar(chartTwoData, chartOptions);
+			chartTwo = new Chart(ctx).Bar(chartTwoData, cOptions);
 			MyBarChartMethods.sort(chartTwo,0)
 			for(n in chartTwo.datasets[0].bars){
 				chartTwo.datasets[0].bars[n].fillColor = chartTwoData.datasets[0].color[chartTwo.datasets[0].bars[n].value];
@@ -279,7 +358,19 @@ function loadList(province, part, fileName){
 		}
 
 		chartOne.update();
-		
+		chartThree.update();
+
+		if(fileName=="kh-list"){
+			$(".chartOne .pie-legend").css('top','45px');
+			$(".chartThree .pie-legend").css('top','70px');
+			$(".result #statusOmid").css('margin-top','60px');
+			$(".chartThree .pie-legend li:nth(1)").hide()
+		}else{
+			$(".chartOne .pie-legend").css('top','2px');
+			$(".chartThree .pie-legend").css('top','55px');
+			$(".result #statusOmid").css('margin-top','44px');
+			$(".chartThree .pie-legend li:nth(1)").show()
+		}
 	});
 }
 
@@ -316,7 +407,7 @@ function addItem(listId, fname, lname, vote, total, category, status){
 
 	if(category){
 		category = category.replace('فقط','').trim();
-		var tagClassList = {"مشترک":"both","منتخب":"chosen", "بازمانده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
+		var tagClassList = {"مشترک":"both","منتخب":"chosen", "بازنده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
 		tagClass = tagClassList[category]!=undefined ? tagClassList[category] : '';
 		items+="<td>" + category + "</td>";
 	}else{
@@ -348,8 +439,8 @@ function addItem(listId, fname, lname, vote, total, category, status){
 function chartOneCal(data){
 	
 	data.category = data.category.replace('فقط','').trim();
-	var categoryList = {"مشترک":"both","منتخب":"chosen", "بازمانده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
-	var dataList = {"omid":0, "osul":1, "free":2, "both":0}
+	var categoryList = {"مشترک":"both","منتخب":"chosen", "بازنده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
+	var dataList = {"omid":1, "osul":3, "free":0, "both":2}
 	var categoryItem = categoryList[data.category]!=undefined ? categoryList[data.category] : '' ;	
 
 	if (categoryItem && !data.category2){
@@ -357,13 +448,31 @@ function chartOneCal(data){
 	}
 
 	if (data.category2){
-		chartOne.segments[dataList[categoryItem]+3].value+=0.5;
+		var dataList = {"omid":5, "osul":6, "free":4, "both":2}
+		chartOne.segments[dataList[categoryItem]].value+=0.5;
 		data.category2 = data.category2.replace('فقط','').trim();	
 		categoryItem = categoryList[data.category2]!=undefined ? categoryList[data.category2] : '' ;		
-		chartOne.segments[dataList[categoryItem]+3].value+=0.5;
+		chartOne.segments[dataList[categoryItem]].value+=0.5;
 	}
 
 }
+
+function chartThreeCal(data){
+	
+	data.res_omid = data.res_omid.trim();
+	var categoryList = {"مشترک":"both","منتخب":"chosen", "بازنده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
+	var dataList = {"chosen":0, "second":1 ,"notchosen":2}
+	var categoryItem = categoryList[data.res_omid]!=undefined ? categoryList[data.res_omid] : '' ;	
+
+	if (categoryItem){
+		if (dataList[categoryItem]!=2){
+			++chartThree.segments[dataList[categoryItem]].value;
+		}else{
+			chartThree.segments[dataList[categoryItem]].value+=0.5;
+		}
+	}
+}
+
 
 
 var MyBarChartMethods = {
