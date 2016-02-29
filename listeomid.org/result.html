@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>لیست امید | فهرست نامزدهای ائتلاف فراگیر اصلاح‌طلبان در انتخابات ۹۴</title>
+	<title>لیست امید | نتایج انتخابات مجلس شورای اسلامی و مجلس خبرگان رهبری ۹۴ به تفکیک حوزه‌ها</title>
 	<link rel="stylesheet" href="/media/css/normalize.css">
 	<link rel="stylesheet" href="/media/css/grid.css">
 	<link rel="stylesheet" href="/media/css/main.css">
@@ -36,7 +36,7 @@
 		<p class="payam">
 			«لیست امید»
 			<br>
-			نتایج انتخابات ۹۴
+			نتایج انتخابات مجلس شورای اسلامی و مجلس خبرگان رهبری ۹۴
 			<br><br>
 			<span class="activeText">
 			مجلس شورای اسلامی
@@ -51,18 +51,12 @@
 						</select>
 					</div>
 				</div>
-				<div class="six columns part-section">
+				<div class="seven columns part-section">
 					<label for="part">حوزه</label>
 					<div class="part-section">
 						<select id="part" class="part u-full-width">
 						</select>
 					</div>
-				</div>
-				<div class="one column">
-					<label>&nbsp;</label>
-					<a href="#" id="printBtn" class="u-pull-left">
-						<img src="/media/img/printer.png" width="48">
-					</a>					
 				</div>
 			</div>
 		</div>
@@ -71,11 +65,11 @@
 					<canvas id="chartOne" width="200" height="200"></canvas>
 					<div class="legend"></div>
 				</div>
-				<table id="status" class="u-full-width compact u-pull-left six columns">
+				<table id="status" class="status u-full-width compact u-pull-left six columns">
 					<tbody>
 						<tr>
 							<td class="t-name">
-							کل آرای مأخوذه</td>
+							کل آراء صحیح‬</td>
 							<td class="t-number totalvote"></td>
 						</tr>					
 						<tr>
@@ -85,27 +79,57 @@
 						</tr>
 						<tr>
 							<td class="t-name">
-							کرسی‌های کسب شده از لیست امید</td>
+							کرسی‌های لیست امید</td>
 							<td class="t-number omid"></td>
 						</tr>
 						<tr>
 							<td class="t-name">
-							کرسی‌های کسب شده از لیست اصولگرایان</td>
+							کرسی‌های لیست اصولگرایان</td>
 							<td class="t-number osul"></td>
-						</tr>												
+						</tr>
 						<tr>
 							<td class="t-name">
-							کرسی‌های کسب شده مستقل</td>
+							کرسی‌های مشترک</td>
+							<td class="t-number both"></td>
+						</tr>																			
+						<tr>
+							<td class="t-name">
+							کرسی‌های مستقل</td>
 							<td class="t-number free"></td>
 						</tr>						
-						<tr>
+						<tr class="m-second">
 							<td class="t-name">
-							واگذاری به مرحله دوم</td>
+							مرحله دوم</td>
 							<td class="t-number second"></td>
 						</tr>
 					</tbody>
 				</table>				
 		</div>
+		<div class="row chart inside statusOmid">
+				<div class="chartThree six columns u-pull-right">
+					<canvas id="chartThree" width="200" height="200"></canvas>
+					<div class="legend"></div>
+				</div>
+				<table id="statusOmid" class="status u-full-width compact u-pull-left six columns">
+					<tbody>
+						<tr>
+							<td class="t-name">
+							منتخب</td>
+							<td class="t-number chosen"></td>
+						</tr>					
+						<tr class="m-second">
+							<td class="t-name">
+							مرحله دوم</td>
+							<td class="t-number second"></td>
+						</tr>
+						<tr>
+							<td class="t-name">
+							بازنده</td>
+							<td class="t-number notchosen"></td>
+						</tr>
+					</tbody>
+				</table>				
+		</div>		
 		<div class="row inside chartTwo">
 			<div class="twelve columns">
 				<canvas id="chartTwo"></canvas>
@@ -178,18 +202,33 @@
 		</div>
 		<div class="row footer">
 			<div class="inside">
-				<div class="four columns">
+				<div class="six one-half columns">
+					<a href="/results.html">
+						نتایج انتخابات
+					</a>
+				</div>				
+				<div class="six one-half columns">
+					<a href="/list.html">
+						لیست امید
+					</a>
+				</div>
+				<div class="six one-half columns">
+					<a href="/media/img/khatami-letter.jpg">
+						قدردانی سید محمد خاتمی
+					</a>
+				</div>									
+				<div class="six one-half columns">
 					<a href="/media/img/tehran-gaamedovom.jpg">
 						تصویر لیست امید تهران
 					</a>
 				</div>
-				<div class="four columns">
+				<div class="six one-half columns">
 					<a href="http://www.aparat.com/v/7wuxs">
 						پیام ویدئویی سید محمد خاتمی
 					</a>
 				</div>
 
-				<div class="four columns">
+				<div class="six one-half columns">
 					<a target="_blank" href="https://telegram.me/etelafbot">
 					ربات تلگرام لیست امید
 					</a>
