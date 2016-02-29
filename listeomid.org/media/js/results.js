@@ -555,4 +555,3 @@ var MyBarChartMethods = {
         chart.update();
     }
 }
-This looks like a JavaScript file. Click this bar to format it.No 1
