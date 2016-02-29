@@ -1,59 +1,73 @@
 var activeTab = "m-province";
 var milliseconds = (new Date).getTime(); //for removing lists' chache
 var version = 2; //in case province and part changes
-var chartOne;
+var chartOne, chartTwo;
+var colors = {"omid":"#b1ff77","osul":"#ffba77","both":"#9ffcf2","free":"#eee","second-omid":"#d8ffbb", "second-osul":"#ffdcbb", "second-free":"#f3f3f3"}
 
 var chartOptions= {
     segmentShowStroke : true,
     segmentStrokeColor : "#fff",
     segmentStrokeWidth : 1,
     tooltipFontFamily: "Vazir, Tahoma",
+    tooltipTitleFontFamily: "Vazir, Tahoma",
+    scaleFontFamily: "Vazir, Tahoma",
+    scaleFontSize: 14,
     tooltipTemplate: " <%=label%>: <%= numeral(circumference / 6.283).format('(0[.][00]%)') %>" ,
     percentageInnerCutout : 50, 
-    animationSteps : 30,
-    animationEasing : "linear",
-    animateRotate : false,
-    animateScale : false,
+    animate : false,
+	scaleOverride: true,
+	scaleSteps: 10,
+	scaleStartValue: 0, 
+	scaleStepWidth: "", 
     legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
 }
 
 var chartOneData = [
     {
-        value: 25,
+        value: 33,
         realValue: 1,
         color:"#b1ff77",
         highlight: "#d8ffbb",
-        label: "امید"
+        label: "لیست امید"
     },
     {
-        value: 25,
+        value: 33,
         realValue: 1,
-        color: "#fdff77",
-        highlight: "#feffbb",
-        label: "اصولگرا"
+        color: "#ffba77",
+        highlight: "#ffdcbb",
+        label: "فقط اصولگرا"
     },
     {
-        value: 25,
+        value: 33,
         realValue: 1,
-        color: "#ddd",
-        highlight: "#eee",
+        color: "#eee",
+        highlight: "#f3f3f3",
         label: "مستقل"
-    },
-    {
-        value: 25,
-        realValue: 1,
-        color: "#95bdff",
-        highlight: "#cadeff",
-        label: "مشترک"
-    }	    
+    },	    
 ]
 
+
+var chartTwoData = {
+    labels: [],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [],
+            color: []
+        },
+    ]
+};
 
 $(document).ready(function(){
 	loadData('m-province');
 	var ctx = $("#chartOne").get(0).getContext("2d");
 	chartOne = new Chart(ctx).Pie(chartOneData, chartOptions);					
 	$(".chartOne .legend").html(chartOne.generateLegend());
+	delete chartOptions.tooltipTemplate;
 
 });
 
@@ -99,7 +113,7 @@ $("#khBtn").click(function(e){
 function loadData(fileName){
 	$.getJSON( "./data/" + fileName + ".json?v=" + version, function( data ) {
 	
-	$("#province").html('<option value="-1" selected="selected">انتخاب کنید</option>');
+	$("#province").html('<option value="-1" selected="selected">کل کشور</option>');
 	  $.each( data, function( key, val ) {
 	  	var item = fileName=="kh-province" ? val : key;
 		$( "<option/>", {
@@ -109,7 +123,7 @@ function loadData(fileName){
 		
 		province = "-1";
 		
-	  //$("#province option:contains('"+province+"')").prop('selected',true);
+	  $("#province option:contains('"+province+"')").prop('selected',true);
 	  loadProvince(province, fileName);
 	});
 }
@@ -145,6 +159,9 @@ function loadProvince(province, fileName){
 
 
 function loadList(province, part, fileName){
+	chartTwoData.labels = [];
+	chartTwoData.datasets[0].data = [];
+	chartTwoData.datasets[0].color = [];
 	$(".result .table tbody").html("");
 	
 	for(k in chartOne.segments){
@@ -153,7 +170,7 @@ function loadList(province, part, fileName){
 
 	$.getJSON( "./data/result-" + fileName + ".json?v=" + milliseconds, function( data ) {
 		var totalseat = 0, totalvote = 0;
-		var dataList = {"omid":0, "osul":0, "free":0, "both":0, "second":0}
+		var dataList = {"omid":0, "osul":0, "free":0, "both":0, "second":0, "total":0}
 	  $.each( data, function( key, val ) {
 
 	  	if (((val.part==part || fileName=="kh-list") && val.province==province) || province==-1){
@@ -162,8 +179,10 @@ function loadList(province, part, fileName){
 	  			totalvote += val.total;
 	  		}
 			
+
 			chartOneCal(val);
-			
+			var tagClassList = {"مشترک":"both","منتخب":"chosen", "بازمانده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
+
 			if(val.lname2){
 				++dataList.second;
 	  			addItem("#second", val.fname, val.lname, val.vote, val.total, val.category, province);
@@ -171,12 +190,34 @@ function loadList(province, part, fileName){
 	  		}else{
 	  			if(val.lname){
 					var category = val.category.replace('فقط','').trim();
-					var tagClassList = {"مشترک":"both","منتخب":"chosen", "بازمانده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
 					tagClass = tagClassList[category]!=undefined ? tagClassList[category] : '';	  				
 					++dataList[tagClass]
 	  				addItem("#total", val.fname, val.lname, val.vote, val.total, val.category, province);
 	  			}	
 	  		}
+	
+			if (val.vote>0 && province!=-1){
+				var tag = '';
+				if(val.lname2){
+					tag = 'second-'
+					chartTwoData.labels.push(val.fname2 + " " + val.lname2);
+					chartTwoData.datasets[0].data.push(val.vote2);
+
+					var category = val.category2.replace('فقط','').trim();
+					tagClass = tagClassList[category]!=undefined ? tagClassList[category] : '';
+					chartTwoData.datasets[0].color.push(colors[tag+tagClass]);
+					
+				}
+
+				var category = val.category.replace('فقط','').trim();
+				tagClass = tagClassList[category]!=undefined ? tagClassList[category] : '';
+				chartTwoData.labels.push(val.fname + " " + val.lname);
+				chartTwoData.datasets[0].data.push(val.vote);
+				chartTwoData.datasets[0].color.push(colors[tag+tagClass]);
+				
+				++dataList.total;
+			}
+
 	  		if(val.l_omid){
 	  			addItem("#omid", val.f_omid, val.l_omid, val.vote_omid, val.total, val.res_omid, province);
 	  		}
@@ -188,16 +229,20 @@ function loadList(province, part, fileName){
 		}
 	  });
 
-	  totalvote = totalvote >0 ? numeral(totalvote).format('0,0') : '';
-	  $("#status .totalvote").text(totalvote);
-	  $("#status .totalseat").text(totalseat);
-	  $("#status .second").text(dataList.second);
-	  $("#status .omid").text(dataList.omid);
-	  $("#status .osul").text(dataList.osul);
-	  $("#status .free").text(dataList.free);
-	  $("#status .both").text(dataList.both);
-
+		var tv = totalvote >0 ? numeral(totalvote).format('0,0') : '';
+		$("#status .totalvote").text(tv);
+		$("#status .totalseat").text(totalseat);
+		$("#status .second").text(dataList.second);
+		$("#status .omid").text(dataList.omid+dataList.both);
+		$("#status .osul").text(dataList.osul+dataList.both);
+		$("#status .free").text(dataList.free);
+		
 		$('.result .table tbody').each(function(){
+			var n = 1;
+			$(this).find('tr').each(function(){
+				$(this).find('td').first().text(n);
+				n++;
+			})
 		    if($(this).find('tr').length == 0){
 		        $(this).parent().hide();
 		    }else{
@@ -205,25 +250,38 @@ function loadList(province, part, fileName){
 		    }
 		});
 
-		if($("#total tbody tr").length==0 && province!=-1){
-			$(".chartOne").fadeOut(250);
+		if (chartTwo!=undefined){
+			chartTwo.destroy();
+		}
+		
+		if (totalvote && dataList.total>0 && province!=-1){
+			$(".chartTwo").fadeIn(250);
+			chartOptions.scaleStepWidth= Math.ceil(totalvote/10);
+			var ctx = $("#chartTwo").get(0).getContext("2d");
+			chartTwo = new Chart(ctx).Bar(chartTwoData, chartOptions);
+			for(n in chartTwo.datasets[0].bars){
+				chartTwo.datasets[0].bars[n].fillColor = chartTwoData.datasets[0].color[n];
+			}
+			MyBarChartMethods.sort(chartTwo, 0);
 		}else{
-			$(".chartOne").fadeIn(250);
+			$(".chartTwo").fadeOut(250);
 		}
 
-		if (province==-1 || $("#total tbody tr").length>0){
-			chartOne.update();
-		}
+		chartOne.update();
+		
 	});
 }
 
 function addItem(listId, fname, lname, vote, total, category, status){
+	listId = ".result table" + listId + " tbody";
+
 	if (status==-1){
 		return false;
 	}
 	var items = '', tagClass='';
 	
-	items+="<td>" + (parseInt($(listId + " td").length/$(listId + " th").length) + 1) + "</td>"
+	//items+="<td>" + (parseInt($(listId + " td").length/$(listId + " th").length) + 1) + "</td>"
+	items+="<td></td>";	
 
 	items+='<td>'
 	items+= fname + " ";
@@ -259,22 +317,94 @@ function addItem(listId, fname, lname, vote, total, category, status){
 	$( "<tr/>", {
 	    html: items,
 	    class: tagClass
-	  }).appendTo( ".result table" + listId + " tbody");
+	  }).appendTo(listId);
 
+	if (vote){
+		$( listId + " tr").sort(function(a,b){
+			a = numeral().unformat($(a).find('td:nth(2)').text())
+			b = numeral().unformat($(b).find('td:nth(2)').text())
+			if(a>b){
+				return -1;
+			}else{
+				return 1;
+			}
+		}).appendTo(listId);
+	}
+	
 }
 
 
 function chartOneCal(data){
-	if (!data.category2){
-		data.category = data.category.replace('فقط','').trim();
-		var categoryList = {"مشترک":"both","منتخب":"chosen", "بازمانده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
-		var dataList = {"omid":0, "osul":1, "free":2, "both":3}
-		var categoryItem = categoryList[data.category]!=undefined ? categoryList[data.category] : '' ;
-		
-		if (categoryItem){
-			++chartOne.segments[dataList[categoryItem]].value;
-		}
-		
+	
+	data.category = data.category.replace('فقط','').trim();
+	var categoryList = {"مشترک":"both","منتخب":"chosen", "بازمانده":"notchosen","مرحله دو":"second","امید":"omid","اصولگرا":"osul","مستقل":"free"};
+	var dataList = {"omid":0, "osul":1, "free":2, "both":0}
+	var categoryItem = categoryList[data.category]!=undefined ? categoryList[data.category] : '' ;	
+
+	if (categoryItem && !data.category2){
+		++chartOne.segments[dataList[categoryItem]].value;
 	}
 
+	if (data.category2){
+		chartOne.segments[dataList[categoryItem]].value+=0.5;
+		data.category2 = data.category2.replace('فقط','').trim();	
+		categoryItem = categoryList[data.category2]!=undefined ? categoryList[data.category2] : '' ;		
+		chartOne.segments[dataList[categoryItem]].value+=0.5;
+	}
+
+}
+
+
+var MyBarChartMethods = {
+    // sort a dataset
+    sort: function (chart, datasetIndex) {
+        var data = []
+        chart.datasets.forEach(function (dataset, i) {
+            dataset.bars.forEach(function (bar, j) {
+                if (i === 0) {
+                    data.push({
+                        label: chart.scale.xLabels[j],
+                        values: [bar.value]
+                    })
+                } else 
+                    data[j].values.push(bar.value)
+            });
+        })
+
+        data.sort(function (a, b) {
+            if (a.values[datasetIndex] > b.values[datasetIndex])
+                return -1;
+            else if (a.values[datasetIndex] < b.values[datasetIndex])
+                return 1;
+            else
+                return 0;
+        })
+
+        chart.datasets.forEach(function (dataset, i) {
+            dataset.bars.forEach(function (bar, j) {
+                if (i === 0)
+                    chart.scale.xLabels[j] = data[j].label;
+                bar.label = data[j].label;
+                bar.value = data[j].values[i];
+            })
+        });
+        chart.update();
+    },
+    // reload data
+    reload: function (chart, datasetIndex, labels, values) {
+        var diff = chart.datasets[datasetIndex].bars.length - values.length;
+        if (diff < 0) {
+            for (var i = 0; i < -diff; i++)
+                chart.addData([0], "");
+        } else if (diff > 0) {
+            for (var i = 0; i < diff; i++)
+                chart.removeData();
+        }
+
+        chart.datasets[datasetIndex].bars.forEach(function (bar, i) {
+            chart.scale.xLabels[i] = labels[i];
+            bar.value = values[i];
+        })
+        chart.update();
+    }
 }

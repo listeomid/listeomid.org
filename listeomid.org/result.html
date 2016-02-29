@@ -41,7 +41,8 @@
 			<span class="activeText">
 			مجلس شورای اسلامی
 			</span>
-		</p>			
+		</p>
+		<table id="temp"></table>			
 		<div class="row select">
 			<div class="inside">
 				<div class="five columns">
@@ -66,9 +67,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row chart">
-			<div class="inside">
-				<div class="chartOne four columns u-pull-right">
+		<div class="row chart inside">
+				<div class="chartOne six columns u-pull-right">
 					<canvas id="chartOne" width="200" height="200"></canvas>
 					<div class="legend"></div>
 				</div>
@@ -81,7 +81,7 @@
 						</tr>					
 						<tr>
 							<td class="t-name">
-							تعداد کرسی‌های این حوزه</td>
+							تعداد کرسی‌ها</td>
 							<td class="t-number totalseat"></td>
 						</tr>
 						<tr>
@@ -93,11 +93,6 @@
 							<td class="t-name">
 							کرسی‌های کسب شده از لیست اصولگرایان</td>
 							<td class="t-number osul"></td>
-						</tr>
-						<tr>
-							<td class="t-name">
-							کرسی‌های کسب شده مشترک</td>
-							<td class="t-number both"></td>
 						</tr>												
 						<tr>
 							<td class="t-name">
@@ -111,6 +106,10 @@
 						</tr>
 					</tbody>
 				</table>				
+		</div>
+		<div class="row inside chartTwo">
+			<div class="twelve columns">
+				<canvas id="chartTwo"></canvas>
 			</div>
 		</div>			
 		<div class="row list">
@@ -145,7 +144,7 @@
 					<tbody>
 					</tbody>
 				</table>
-				<table id="omid" class="u-full-width table colored">
+				<table id="omid" class="u-full-width table colored hidden">
 					<caption>وضعیت لیست امید</caption>
 					<thead>
 						<tr>
@@ -160,7 +159,7 @@
 					<tbody>
 					</tbody>
 				</table>
-				<table id="osul" class="u-full-width table colored">
+				<table id="osul" class="u-full-width table colored hidden">
 					<caption>وضعیت اصولگرایان</caption>
 					<thead>
 						<tr>
