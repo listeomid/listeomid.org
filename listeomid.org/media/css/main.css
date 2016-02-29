@@ -93,4 +93,4 @@ a#printBtn:hover{opacity: 1}
 #chartTwo{width: 100%;height: 500px}
 .chartTwo{display: none;}
 .hidden{display: none !important;}
-.list{display: none};
+.result .list{display: none};
