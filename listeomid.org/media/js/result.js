@@ -218,12 +218,12 @@ function loadList(province, part, fileName){
 				++dataList.total;
 			}
 
-	  		if(val.l_omid){
-	  			addItem("#omid", val.f_omid, val.l_omid, val.vote_omid, val.total, val.res_omid, province);
-	  		}
-	  		if(val.l_osul){
-	  			addItem("#osul", val.f_osul, val.l_osul, val.vote_osul, val.total, val.res_osul, province);
-	  		}
+	  		// if(val.l_omid){
+	  		// 	addItem("#omid", val.f_omid, val.l_omid, val.vote_omid, val.total, val.res_omid, province);
+	  		// }
+	  		// if(val.l_osul){
+	  		// 	addItem("#osul", val.f_osul, val.l_osul, val.vote_osul, val.total, val.res_osul, province);
+	  		// }
 	  		
 	  		
 		}
@@ -258,6 +258,9 @@ function loadList(province, part, fileName){
 			$(".chartTwo").fadeIn(250);
 			chartOptions.scaleStepWidth= Math.ceil(totalvote/10);
 			var ctx = $("#chartTwo").get(0).getContext("2d");
+			for(n in chartTwoData.datasets[0].bars){
+				chartTwo.datasets[0].bars[n].fillColor = chartTwoData.datasets[0].color[n];
+			}			
 			chartTwo = new Chart(ctx).Bar(chartTwoData, chartOptions);
 			for(n in chartTwo.datasets[0].bars){
 				chartTwo.datasets[0].bars[n].fillColor = chartTwoData.datasets[0].color[n];
