@@ -66,7 +66,7 @@ var chartThreeData = function (){return [
     {
         value: 33,
         color: colors.omid,
-        label: "منتخب"
+        label: "راه‌یافته"
     },
     {
         value: 33,
@@ -76,7 +76,7 @@ var chartThreeData = function (){return [
     {
         value: 33,
         color: '#eee',
-        label: "بازنده"
+        label: "بازمانده"
     }
    	    
 ]}
@@ -191,11 +191,38 @@ function loadList(province, part, fileName){
 	chartTwoData.datasets[0].data = [];
 	chartTwoData.datasets[0].color = [];
 	$(".result .table tbody").html("");
-
+	var title='';
 	if(province!=-1){
 		$(".list").show();
-		$(".statusOmid").addClass('ahidden')
+		$(".statusOmid").addClass('ahidden');
+		if (fileName=="kh-list"){
+			title = 'میزان توفیق جریان‌های سیاسی در حوزه انتخابیه «'+province+'» برای مجلس خبرگان ششم'
+		}else{
+			title = 'میزان توفیق جریان‌های سیاسی در حوزه انتخابیه «'+part+'» برای مجلس دهم'
+		}
+		$("#chartOneTitle").text(title);
+
+		if (fileName=="kh-list"){
+			title = 'نسبت آرا نمایندگان جریان‌های سیاسی در حوزه‌ی انتخابیه «'+province+'»';
+		}else{
+			title = 'نسبت آرا نمایندگان جریان‌های سیاسی در حوزه‌ی انتخابیه «'+part+'»';
+		}
+		$("#chartTwoTitle").text(title);				
 	}else{
+		if (fileName=="kh-list"){
+			title = 'میزان توفیق نامزدهای لیست امید در ۷۷ حوزه‌ای که وارد رقابت حداقلی شده بودند'
+		}else{
+			title = 'میزان توفیق نامزدهای لیست امید در ۲۳۳ حوزه‌ای که وارد رقابت حداقلی شده بودند'
+		}
+		$("#chartThreeTitle").text(title);	
+
+		if (fileName=="kh-list"){
+			title = 'میزان توفیق جریان‌های سیاسی در کل کشور برای مجلس خبرگان پنجم'
+		}else{
+			title = 'میزان توفیق جریان‌های سیاسی در کل کشور برای مجلس دهم'
+		}
+		$("#chartOneTitle").text(title);	
+
 		$(".list").hide();
 		$(".statusOmid").removeClass('ahidden')
 	}
