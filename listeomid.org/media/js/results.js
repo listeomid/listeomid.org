@@ -270,7 +270,7 @@ function loadList(province, part, fileName){
 
 	  	if (((val.part==part || fileName=="kh-list") && val.province==province) || province==-1){
 	  		++totalseat;
-	  		if (val.total && (data[key-1]!=undefined && val.part!=data[key-1].part)){
+	  		if (fileName!="kh-list" && val.total && (data[key-1]!=undefined && val.part!=data[key-1].part || key==0)){
 	  			totalvote += val.total;
 	  		}
 	  		
