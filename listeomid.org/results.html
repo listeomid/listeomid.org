@@ -6,7 +6,7 @@
 	<title>لیست امید | نتایج انتخابات مجلس شورای اسلامی و مجلس خبرگان رهبری ۹۴ به تفکیک حوزه‌ها</title>
 	<link rel="stylesheet" href="/media/css/normalize.css">
 	<link rel="stylesheet" href="/media/css/grid.css">
-	<link rel="stylesheet" href="/media/css/main.css">
+	<link rel="stylesheet" href="/media/css/main.css?v=10">
 	<link rel="stylesheet" media="print" href="/media/css/print.css?v=2">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<meta name="keywords" content="لیست امید, list e omid, اصلاح طلبان, انتخابات, ائتلاف فراگیر, لیست نامزدهای انتخابات, مجلس شورای اسلامی, خبرگان">
@@ -73,8 +73,7 @@
 				<table id="status" class="status u-full-width compact u-pull-left six columns">
 					<tbody>
 						<tr>
-							<td class="t-name">
-							کل آراء صحیح‬</td>
+							<td class="t-name vote-text">کل آراء صحیح‬</td>
 							<td class="t-number totalvote"></td>
 						</tr>					
 						<tr>
@@ -92,6 +91,16 @@
 							اختصاصی لیست اصولگرایان</td>
 							<td class="t-number osul"></td>
 						</tr>
+						<tr>
+							<td class="t-name">
+							لیست امید</td>
+							<td class="t-number omid-both"></td>
+						</tr>
+						<tr>
+							<td class="t-name">
+							لیست اصولگرایان</td>
+							<td class="t-number osul-both"></td>
+						</tr>						
 						<tr>
 							<td class="t-name">
 							مشترک میان لیست‌های امید و اصولگرایان</td>
@@ -112,7 +121,7 @@
 		</div>
 		<div class="row inside chartTitle statusOmid">
 			<div class="twelve columns">
-				<h6 id="chartThreeTitle">میزان توفیق نامزدهای لیست امید در ۲۳۳ (از ۲۹۰) کرسی‌ای که برایش وارد رقابت حداقلی شده بودند</h6>
+				<h6 id="chartThreeTitle">میزان توفیق نامزدهای لیست امید در ۲۳۰ (از ۲۹۰) کرسی‌ای که برایش وارد رقابت حداقلی شده بودند</h6>
 			</div>
 		</div>		
 		<div class="row chart inside statusOmid">
@@ -124,19 +133,34 @@
 					<tbody>
 						<tr>
 							<td class="t-name">
-							راه‌یافته</td>
+							تعداد داوطلبان راه‌یافته از لیست امید</td>
 							<td class="t-number chosen"></td>
-						</tr>					
-						<tr class="m-second">
-							<td class="t-name">
-							مرحله دوم</td>
-							<td class="t-number second"></td>
 						</tr>
 						<tr>
 							<td class="t-name">
-							بازمانده</td>
+							نسبت داوطلبان راه‌یافته از لیست امید</td>
+							<td class="t-number chosen-per">۴۸٪</td>
+						</tr>											
+						<tr class="m-second">
+							<td class="t-name">
+							تعداد داوطلبان لیست امید در مرحله دوم</td>
+							<td class="t-number second"></td>
+						</tr>
+						<tr class="m-second">
+							<td class="t-name">
+							نسبت داوطلبان لیست امید در مرحله دوم</td>
+							<td class="t-number second-per"></td>
+						</tr>						
+						<tr>
+							<td class="t-name">
+							تعداد داوطلبان لیست امید بازمانده</td>
 							<td class="t-number notchosen"></td>
 						</tr>
+						<tr>
+							<td class="t-name">
+							نسبت داوطلبان لیست امید بازمانده</td>
+							<td class="t-number notchosen-per"></td>
+						</tr>						
 					</tbody>
 				</table>				
 		</div>	
@@ -272,6 +296,6 @@
 	<script type="text/javascript" src="/media/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/media/js/numeral.min.js"></script>
 	<script type="text/javascript" src="/media/js/chart.min.js"></script>	
-	<script type="text/javascript" src="/media/js/results.js"></script>
+	<script type="text/javascript" src="/media/js/results.js?v=10"></script>
 </body>
 </html>

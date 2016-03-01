@@ -212,7 +212,7 @@ function loadList(province, part, fileName){
 		if (fileName=="kh-list"){
 			title = 'میزان توفیق نامزدهای لیست امید در ۷۷ (از ۸۸) کرسی‌ای که برایش ‌وارد رقابت حداقلی شده بودند'
 		}else{
-			title = 'میزان توفیق نامزدهای لیست امید در ۲۳۳ (از ۲۹۰) کرسی‌ای که برایش وارد رقابت حداقلی شده بودند'
+			title = 'میزان توفیق نامزدهای لیست امید در ۲۳۰ (از ۲۹۰) کرسی‌ای که برایش وارد رقابت حداقلی شده بودند'
 		}
 		$("#chartThreeTitle").text(title);	
 
@@ -340,14 +340,20 @@ function loadList(province, part, fileName){
 		$("#status .totalvote").text(tv);
 		$("#status .totalseat").text(totalseat);
 		$("#status .second").text(dataList.second);
-		$("#status .omid").text(dataList.omid+dataList.both);
-		$("#status .osul").text(dataList.osul+dataList.both);
+		$("#status .omid").text(dataList.omid);
+		$("#status .osul").text(dataList.osul);
+		$("#status .omid-both").text(dataList.omid+dataList.both);
+		$("#status .osul-both").text(dataList.osul+dataList.both);
 		$("#status .both").text(dataList.both);
 		$("#status .free").text(dataList.free);
 		
+		var sum = dataList.omid_chosen + dataList.omid_second/2 + dataList.omid_notchosen
 		$("#statusOmid .chosen").text(dataList.omid_chosen);
+		$("#statusOmid .chosen-per").text(numeral(dataList.omid_chosen/sum).format('0.00 %'));
 		$("#statusOmid .second").text(dataList.omid_second);
+		$("#statusOmid .second-per").text(numeral((dataList.omid_second/2)/sum).format('0.00 %'));
 		$("#statusOmid .notchosen").text(dataList.omid_notchosen);
+		$("#statusOmid .notchosen-per").text(numeral(dataList.omid_notchosen/sum).format('0.00 %'));
 
 
 		$('.result .table tbody').each(function(){
@@ -389,14 +395,16 @@ function loadList(province, part, fileName){
 
 		if(fileName=="kh-list"){
 			$(".chartOne .pie-legend").css('top','45px');
-			$(".chartThree .pie-legend").css('top','70px');
-			$(".result #statusOmid").css('margin-top','60px');
-			$(".chartThree .pie-legend li:nth(1)").hide()
+			$(".chartThree .pie-legend").css('top','50px');
+			$(".result #statusOmid").css('margin-top','10px');
+			$(".chartThree .pie-legend li:nth(1)").hide();
+			$("#status .vote-text").html("کل آراء مأخوذه");
 		}else{
 			$(".chartOne .pie-legend").css('top','2px');
 			$(".chartThree .pie-legend").css('top','55px');
-			$(".result #statusOmid").css('margin-top','44px');
+			$(".result #statusOmid").css('margin-top','0px');
 			$(".chartThree .pie-legend li:nth(1)").show()
+			$("#status .vote-text").html("کل آراء صحیح");
 		}
 	});
 }
@@ -492,7 +500,7 @@ function chartThreeCal(data){
 	var categoryItem = categoryList[data.res_omid]!=undefined ? categoryList[data.res_omid] : '' ;	
 
 	if (categoryItem){
-		if (dataList[categoryItem]!=2){
+		if (dataList[categoryItem]!=1){
 			++chartThree.segments[dataList[categoryItem]].value;
 		}else{
 			chartThree.segments[dataList[categoryItem]].value+=0.5;
