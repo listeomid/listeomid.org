@@ -347,9 +347,13 @@ function loadList(province, part, fileName){
 		$("#status .both").text(dataList.both);
 		$("#status .free").text(dataList.free);
 		
+		var sum = dataList.omid_chosen + dataList.omid_second/2 + dataList.omid_notchosen
 		$("#statusOmid .chosen").text(dataList.omid_chosen);
+		$("#statusOmid .chosen-per").text(numeral(dataList.omid_chosen/sum).format('0.00 %'));
 		$("#statusOmid .second").text(dataList.omid_second);
+		$("#statusOmid .second-per").text(numeral((dataList.omid_second/2)/sum).format('0.00 %'));
 		$("#statusOmid .notchosen").text(dataList.omid_notchosen);
+		$("#statusOmid .notchosen-per").text(numeral(dataList.omid_notchosen/sum).format('0.00 %'));
 
 
 		$('.result .table tbody').each(function(){
@@ -391,14 +395,14 @@ function loadList(province, part, fileName){
 
 		if(fileName=="kh-list"){
 			$(".chartOne .pie-legend").css('top','45px');
-			$(".chartThree .pie-legend").css('top','70px');
-			$(".result #statusOmid").css('margin-top','60px');
+			$(".chartThree .pie-legend").css('top','50px');
+			$(".result #statusOmid").css('margin-top','10px');
 			$(".chartThree .pie-legend li:nth(1)").hide();
 			$("#status .vote-text").html("کل آراء مأخوذه");
 		}else{
 			$(".chartOne .pie-legend").css('top','2px');
 			$(".chartThree .pie-legend").css('top','55px');
-			$(".result #statusOmid").css('margin-top','44px');
+			$(".result #statusOmid").css('margin-top','0px');
 			$(".chartThree .pie-legend li:nth(1)").show()
 			$("#status .vote-text").html("کل آراء صحیح");
 		}
