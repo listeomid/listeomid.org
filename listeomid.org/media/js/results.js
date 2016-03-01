@@ -352,7 +352,7 @@ function loadList(province, part, fileName){
 		dataList.omid_chosen = dataList.omid_chosen > 0 ? dataList.omid_chosen/sum : 0;
 		$("#statusOmid .chosen-per").text(numeral(dataList.omid_chosen).format('0.00 %'));
 		$("#statusOmid .second").text(dataList.omid_second);
-		dataList.omid_second = dataList.omid_chosen > 0 ? (dataList.omid_second/2)/sum : 0;
+		dataList.omid_second = dataList.omid_second > 0 ? (dataList.omid_second/2)/sum : 0;
 		$("#statusOmid .second-per").text(numeral(dataList.omid_second).format('0.00 %'));
 		$("#statusOmid .notchosen").text(dataList.omid_notchosen);
 		dataList.omid_notchosen = dataList.omid_notchosen > 0 ? dataList.omid_notchosen/sum : 0;
