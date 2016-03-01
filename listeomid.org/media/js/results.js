@@ -340,8 +340,10 @@ function loadList(province, part, fileName){
 		$("#status .totalvote").text(tv);
 		$("#status .totalseat").text(totalseat);
 		$("#status .second").text(dataList.second);
-		$("#status .omid").text(dataList.omid+dataList.both);
-		$("#status .osul").text(dataList.osul+dataList.both);
+		$("#status .omid").text(dataList.omid);
+		$("#status .osul").text(dataList.osul);
+		$("#status .omid-both").text(dataList.omid+dataList.both);
+		$("#status .osul-both").text(dataList.osul+dataList.both);
 		$("#status .both").text(dataList.both);
 		$("#status .free").text(dataList.free);
 		
@@ -391,12 +393,14 @@ function loadList(province, part, fileName){
 			$(".chartOne .pie-legend").css('top','45px');
 			$(".chartThree .pie-legend").css('top','70px');
 			$(".result #statusOmid").css('margin-top','60px');
-			$(".chartThree .pie-legend li:nth(1)").hide()
+			$(".chartThree .pie-legend li:nth(1)").hide();
+			$("#status .vote-text").html("کل آراء مأخوذه");
 		}else{
 			$(".chartOne .pie-legend").css('top','2px');
 			$(".chartThree .pie-legend").css('top','55px');
 			$(".result #statusOmid").css('margin-top','44px');
 			$(".chartThree .pie-legend li:nth(1)").show()
+			$("#status .vote-text").html("کل آراء صحیح");
 		}
 	});
 }

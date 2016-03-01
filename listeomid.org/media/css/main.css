@@ -75,7 +75,7 @@ a#printBtn:hover{opacity: 1}
 .result .colored tr.both{background-color: #74b1eb; color: #fff;} /*blue  light blue :cadeff*/
 .result .colored tr.free{background-color: #ada8f6}
 .result #second.colored tr.free{background-color: #d6d3fa}
-.result .status{font-size: 14px;margin: -20px 0 10px;border-collapse: collapse;display: inline-block;}
+.result .status{font-size: 14px;margin: -40px 0 10px;border-collapse: collapse;display: inline-block;}
 .result .status .t-name{width: 50%}
 .result .status .t-number{text-align: left;width: 40%}
 .result .status td{display: inline-block;float: right;overflow: hidden;word-wrap: break-word;word-break: break-all;height: 31px}
