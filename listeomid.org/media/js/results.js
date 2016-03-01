@@ -32,7 +32,7 @@ var chartOneData = function (){return [
     {
         value: 14.28,
         color: colors.omid,
-        label: "لیست امید"
+        label: "فقط لیست امید"
     },
     {
         value: 14.28,
@@ -347,12 +347,12 @@ function loadList(province, part, fileName){
 		$("#status .both").text(dataList.both);
 		$("#status .free").text(dataList.free);
 		
-		var sum = dataList.omid_chosen + dataList.omid_second/2 + dataList.omid_notchosen
+		var sum = dataList.omid_chosen + dataList.omid_second + dataList.omid_notchosen
 		$("#statusOmid .chosen").text(dataList.omid_chosen);
 		dataList.omid_chosen = dataList.omid_chosen > 0 ? dataList.omid_chosen/sum : 0;
 		$("#statusOmid .chosen-per").text(numeral(dataList.omid_chosen).format('0.00 %'));
 		$("#statusOmid .second").text(dataList.omid_second);
-		dataList.omid_second = dataList.omid_second > 0 ? (dataList.omid_second/2)/sum : 0;
+		dataList.omid_second = dataList.omid_second > 0 ? (dataList.omid_second)/sum : 0;
 		$("#statusOmid .second-per").text(numeral(dataList.omid_second).format('0.00 %'));
 		$("#statusOmid .notchosen").text(dataList.omid_notchosen);
 		dataList.omid_notchosen = dataList.omid_notchosen > 0 ? dataList.omid_notchosen/sum : 0;
@@ -503,11 +503,7 @@ function chartThreeCal(data){
 	var categoryItem = categoryList[data.res_omid]!=undefined ? categoryList[data.res_omid] : '' ;	
 
 	if (categoryItem){
-		if (dataList[categoryItem]!=1){
-			++chartThree.segments[dataList[categoryItem]].value;
-		}else{
-			chartThree.segments[dataList[categoryItem]].value+=0.5;
-		}
+		++chartThree.segments[dataList[categoryItem]].value;
 	}
 }
 
