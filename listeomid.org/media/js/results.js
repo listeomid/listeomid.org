@@ -496,7 +496,7 @@ function chartThreeCal(data){
 	var categoryItem = categoryList[data.res_omid]!=undefined ? categoryList[data.res_omid] : '' ;	
 
 	if (categoryItem){
-		if (dataList[categoryItem]!=2){
+		if (dataList[categoryItem]!=1){
 			++chartThree.segments[dataList[categoryItem]].value;
 		}else{
 			chartThree.segments[dataList[categoryItem]].value+=0.5;
