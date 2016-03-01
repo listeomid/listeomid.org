@@ -349,11 +349,14 @@ function loadList(province, part, fileName){
 		
 		var sum = dataList.omid_chosen + dataList.omid_second/2 + dataList.omid_notchosen
 		$("#statusOmid .chosen").text(dataList.omid_chosen);
-		$("#statusOmid .chosen-per").text(numeral(dataList.omid_chosen/sum).format('0.00 %'));
+		dataList.omid_chosen = dataList.omid_chosen > 0 ? dataList.omid_chosen/sum : 0;
+		$("#statusOmid .chosen-per").text(numeral(dataList.omid_chosen).format('0.00 %'));
 		$("#statusOmid .second").text(dataList.omid_second);
-		$("#statusOmid .second-per").text(numeral((dataList.omid_second/2)/sum).format('0.00 %'));
+		dataList.omid_second = dataList.omid_chosen > 0 ? (dataList.omid_second/2)/sum : 0;
+		$("#statusOmid .second-per").text(numeral(dataList.omid_second).format('0.00 %'));
 		$("#statusOmid .notchosen").text(dataList.omid_notchosen);
-		$("#statusOmid .notchosen-per").text(numeral(dataList.omid_notchosen/sum).format('0.00 %'));
+		dataList.omid_notchosen = dataList.omid_notchosen > 0 ? dataList.omid_notchosen/sum : 0;
+		$("#statusOmid .notchosen-per").text(numeral(dataList.omid_notchosen).format('0.00 %'));
 
 
 		$('.result .table tbody').each(function(){
